@@ -1,27 +1,94 @@
-# Demo
+# ngx-sticky-kit
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
+Angular Sticky makes HTML elements sticky. For instance, the header, the menu, the sidebar or any other block can be stuck at the desired position.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Install with npm:
 
-## Code scaffolding
+```bash
+npm install ngx-sticky-kit --save
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Initial development environment:
 
-## Build
+```bash
+npm install
+npm run build
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run demo application:
 
-## Running unit tests
+```bash
+npm start
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Usage
 
-## Running end-to-end tests
+**[sticky]** - makes an element sticky
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    <sticky>Sticky element</sticky>
+    <div sticky>Sticky div</div>
+    
+**[sticky-orientation]** : (_default "none"_) - orientation for sticky element ("left", "right", "none")
 
-## Further help
+**[sticky-zIndex]** : (_default 10_) - controls z-index CSS parameter of the sticky element
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    <sticky sticky-zIndex="999">Sticky element</sticky>
+    
+**[sticky-width]** : (_default "auto"_) - width of the sticky element
+
+**[sticky-offset-top]** : (_default 0_) - pixels between the top of the page or container and the element
+
+**[sticky-offset-bottom]** : (_default 0_) - pixels between the bottom of the page or container and the element
+
+    <sticky sticky-offset-top="20" sticky-offset-bottom="20">Sticky element</sticky>
+    
+**[sticky-start]** : (_default 0_) - position where the element should start to stick
+
+    <sticky sticky-start="20">Sticky element</sticky>
+    
+**[sticky-class]** : (_default "sticky"_) - CSS class that will be added after the element starts sticking
+   
+**[sticky-end-class]** : (_default "sticky-end"_) - CSS class that will be added to the sticky element after it ends sticking
+
+**[sticky-media-query]** : (_default ""_) - media query that allows to use sticky
+
+**[sticky-parent]** : (_default true_) - if true, then the sticky element will be stuck relatively to the parent containers. Otherwise, _window_ will be used as the parent container. 
+
+> NOTE: the "position: relative" styling is added to the parent element automatically in order to use the absolute positioning
+
+## Example
+
+```typescript
+// app.module.ts
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {StickyModule} from 'ngx-sticky-kit';
+import {AppComponent} from './app.component';
+
+@NgModule({
+    imports: [
+        BrowserModule,
+        StickyModule
+    ],
+    declarations: [
+        AppComponent
+    ],
+    bootstrap: [
+        AppComponent
+    ]
+})
+export class AppModule { }
+```
+
+```typescript
+// app.component.ts
+import {Component} from '@angular/core';
+
+@Component({
+  selector: 'app',
+  template: '<sticky [sticky-offset-top]="20"><div>demo</div></sticky>',
+})
+export class DemoComponent { }
+```
