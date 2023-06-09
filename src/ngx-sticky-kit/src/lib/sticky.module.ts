@@ -5,10 +5,8 @@ import { StickyComponent } from './sticky.component';
   declarations: [
     StickyComponent
   ],
-  imports: [
-  ],
   exports: [
     StickyComponent
   ]
 })
-export class StickyModule { }
+export class StickyModule {}
